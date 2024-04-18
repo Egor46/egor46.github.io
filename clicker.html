@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>clicker?</title>
+        <link rel="stylesheet" href="/css/hueta.css">
+    </head>
+
+    <body style="background-color: bisque;">
+        <script>
+            var counter = 0;
+            var power = 1;
+            var sex = document.getElementById("sex");
+            function onClick(){
+                sex = document.getElementById("sex");
+                counter += power;
+                document.textContent = `Clicks: ${counter}`;
+            }
+            function save(){
+                newCookie = `power=${power}; counter = ${counter}`;
+                document.cookie = counter;  
+            }
+            function load(){
+                data = document.cookie.split(";");
+                power = data[0].split("=")[1];
+                counter = data[1].split("=")[1];
+            }
+            function buyUpgrade1(){
+                if(counter>=100){
+                counter -= 100;
+                power += 1;
+                }
+            }
+            function buyUpgrade2(){
+                if(counter >=1000){
+                counter -=1000;
+                power+=10;
+                }
+            }
+        </script>
+        <center>
+            <span id="sex" style ="font:math; font-size:42px">Clicks: 0</span><br>
+            <button class="gradient-button" onClick="onClick()">click</button><br>
+            <button class="gradient-button" onClick="buyUpgrade1()">+1 power</button><button class="gradient-button" onClick="buyUpgrade2()">+10 power</button><br><br>
+            <button class ="gradient-button" onClick="save()">save</button> <button class="gradient-button" onClick="load()">load</button>
+        </center>
+    </body>
+</html>
